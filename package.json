@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@logdna/tail-file": "^2.0.0"
+    "@logdna/tail-file": "^2.0.0",
+    "node-fetch": "^2.6.1"
   }
 }

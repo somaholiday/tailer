@@ -1,3 +1,4 @@
+const fetch = require("node-fetch");
 const TailFile = require("@logdna/tail-file");
 
 const LOG_FILE = "/Users/soma/Library/Logs/Micro Snitch.log";
@@ -5,11 +6,25 @@ const OPTIONS = {
   encoding: "utf8",
 };
 
+const hue_ip = "10.10.10.180";
+const user_id = "LzIW1FbvugzxXr4aCyNoeCc9Fd5ywYlpXr9ge7Oo";
+const api_base_url = `http://${hue_ip}/api/${user_id}`;
+const group = "0";
+const url = `${api_base_url}/groups/${group}/action`;
+
 const handlers = {
   "Video Device became active": () => {
+    fetch(url, {
+      method: "PUT",
+      body: JSON.stringify({ on: true }),
+    });
     console.log("On!");
   },
   "Video Device became inactive": () => {
+    fetch(url, {
+      method: "PUT",
+      body: JSON.stringify({ on: false }),
+    });
     console.log("Off!");
   },
 };
