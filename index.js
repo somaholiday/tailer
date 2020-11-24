@@ -32,7 +32,7 @@ const handlers = {
 
 function matchHandlers(chunk) {
   Object.entries(handlers).forEach(([str, fn]) => {
-    if (chunk.includes(str)) {
+    if (chunk.indexOf(str) > -1) {
       fn();
     }
   });
