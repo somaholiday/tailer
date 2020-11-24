@@ -12,19 +12,20 @@ const api_base_url = `http://${hue_ip}/api/${user_id}`;
 const group = "0";
 const url = `${api_base_url}/groups/${group}/action`;
 
+function makeRequest(body) {
+  fetch(url, {
+    method: "PUT",
+    body: JSON.stringify(body),
+  });
+}
+
 const handlers = {
   "Video Device became active": () => {
-    fetch(url, {
-      method: "PUT",
-      body: JSON.stringify({ on: true }),
-    });
+    makeRequest({ on: true });
     console.log("On!");
   },
   "Video Device became inactive": () => {
-    fetch(url, {
-      method: "PUT",
-      body: JSON.stringify({ on: false }),
-    });
+    makeRequest({ on: false });
     console.log("Off!");
   },
 };
