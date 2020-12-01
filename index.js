@@ -6,27 +6,22 @@ const OPTIONS = {
   encoding: "utf8",
 };
 
-const hue_ip = "10.10.10.180";
-const user_id = "LzIW1FbvugzxXr4aCyNoeCc9Fd5ywYlpXr9ge7Oo";
-const api_base_url = `http://${hue_ip}/api/${user_id}`;
-const group = "0";
-const url = `${api_base_url}/groups/${group}/action`;
+const halo_ip = "10.10.10.235";
+const api_base_url = `http://${halo_ip}`;
 
 function makeRequest(body) {
-  fetch(url, {
-    method: "PUT",
-    body: JSON.stringify(body),
-  });
+  const url = `${api_base_url}/power`;
+  fetch(url);
 }
 
 const handlers = {
   "Video Device became active": () => {
     makeRequest({ on: true });
-    console.log("On!");
+    // console.log("On!");
   },
   "Video Device became inactive": () => {
     makeRequest({ on: false });
-    console.log("Off!");
+    // console.log("Off!");
   },
 };
 
